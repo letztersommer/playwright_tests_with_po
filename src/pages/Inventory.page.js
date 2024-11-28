@@ -9,7 +9,27 @@ export class InventoryPage extends BaseSwagLabPage {
 
     addItemToCartButton = this.page.locator('[id^="add-to-cart"]');
 
+    sortProductButton = this.page.getByTestId('product-sort-container');
+
+    inventoryItemsPrice = this.page.getByTestId('inventory-item-price');
+
     async addItemToCartById(id) {
         await this.addItemToCartButton.nth(id).click();
+    }
+
+    async sortProductNameAZ() {
+        await this.sortProductButton.selectOption('az');
+    }
+
+    async sortProductNameZA() {
+        await this.sortProductButton.selectOption('za');
+    }
+
+    async sortProductPriceLoHi() {
+        await this.sortProductButton.selectOption('lohi');
+    }
+
+    async sortProductPriceHiLo() {
+        await this.sortProductButton.selectOption('hilo');
     }
 }

@@ -34,5 +34,9 @@ module.exports = {
             ignoreTemplateLiterals: true,
             ignoreRegExpLiterals: true,
         }],
+
+        'linebreak-style': 0,
+        'import/prefer-default-export': 'off',
+        'max-classes-per-file': 'off',
     },
 };
