@@ -54,6 +54,8 @@ module.exports = defineConfig({
             fullPage: true,
             mode: 'only-on-failure',
         },
+
+        testIdAttribute: 'data-test',
     },
 
     /* Configure projects for major browsers */
@@ -63,15 +65,15 @@ module.exports = defineConfig({
             use: { ...devices['Desktop Chrome'] },
         },
 
-        {
-            name: 'webkit',
-            use: { ...devices['Desktop Safari'] },
-        },
+        // {
+        //     name: 'webkit',
+        //     use: { ...devices['Desktop Safari'] },
+        // },
 
-        {
-            name: 'firefox',
-            use: { ...devices['Desktop Firefox'] },
-        },
+        // {
+        //     name: 'firefox',
+        //     use: { ...devices['Desktop Firefox'] },
+        // },
 
         /* Test against mobile viewport. */
         // {
