@@ -32,10 +32,4 @@ export class InventoryPage extends BaseSwagLabPage {
     async sortProductPriceHiLo() {
         await this.sortProductButton.selectOption('hilo');
     }
-
-    async cleanProductPrice() {
-        const productPriceAfterSort = await this.inventoryItemsPrice.allTextContents();
-        const cleanedProductPrice = productPriceAfterSort.map(price => parseFloat(price.replace(/\$/g, '')));
-        return (cleanedProductPrice);
-    }
 }

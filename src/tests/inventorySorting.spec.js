@@ -1,6 +1,13 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures/base';
 
+const cleanPrices = (prices) => prices.map(price => parseFloat(String(price).replace(/$/g, '')));
+
+const sortPrices = (prices, order) => {
+    const cleanedPrices = cleanPrices(prices);
+    return order === 'asc' ? cleanedPrices.sort((a, b) => a - b) : cleanedPrices.sort((a, b) => b - a);
+};
+
 test.beforeEach(async (
     /** @type {{ app: import('../pages/Application').Application }} */{ app },
 ) => {
@@ -35,24 +42,28 @@ test.describe('Perform and verify sorting on the Inventory page', () => {
         /** @type {{ app: import('../pages/Application').Application }} */{ app },
     ) => {
         const productPriceBeforeSort = await app.inventory.inventoryItemsPrice.allTextContents();
+        const cleanedProductPriceBefore = cleanPrices(productPriceBeforeSort);
 
         await app.inventory.sortProductPriceLoHi();
 
-        const cleanedProductPrice = await app.inventory.cleanProductPrice();
+        const productPriceAfterSortLoHi = await app.inventory.inventoryItemsPrice.allTextContents();
+        const cleanedProductPriceAfter = cleanPrices(productPriceAfterSortLoHi);
 
-        const sortedPrices = [...productPriceBeforeSort].map(price => parseFloat(price.replace(/\$/g, ''))).sort((a, b) => a - b);
-        expect(cleanedProductPrice).toEqual(sortedPrices);
+        const sortedPrices = sortPrices(cleanedProductPriceBefore, 'asc');
+        expect(cleanedProductPriceAfter).toEqual(sortedPrices);
     });
     test('Sorting products prices High - Low', async (
         /** @type {{ app: import('../pages/Application').Application }} */{ app },
     ) => {
         const productPriceBeforeSort = await app.inventory.inventoryItemsPrice.allTextContents();
+        const cleanedProductPriceBefore = cleanPrices(productPriceBeforeSort);
 
         await app.inventory.sortProductPriceHiLo();
 
-        const cleanedProductPrice = await app.inventory.cleanProductPrice();
+        const productPriceAfterSortHiLo = await app.inventory.inventoryItemsPrice.allTextContents();
+        const cleanedProductPriceAfter = cleanPrices(productPriceAfterSortHiLo);
 
-        const sortedPrices = [...productPriceBeforeSort].map(price => parseFloat(price.replace(/\$/g, ''))).sort((a, b) => b - a);
-        expect(cleanedProductPrice).toEqual(sortedPrices);
+        const sortedPrices = sortPrices(cleanedProductPriceBefore, 'desc');
+        expect(cleanedProductPriceAfter).toEqual(sortedPrices);
     });
 });
