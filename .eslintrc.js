@@ -38,5 +38,6 @@ module.exports = {
         'linebreak-style': 0,
         'import/prefer-default-export': 'off',
         'max-classes-per-file': 'off',
+        'no-restricted-syntax': 'off',
     },
 };
