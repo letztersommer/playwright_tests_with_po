@@ -31,7 +31,7 @@ test('Add several random products to the Shopping Cart and verify', async (
     });
     
     await test.step('Verify the number of added products', async () => {
-    await expect(app.shoppingCart.cartItems).toHaveCount(app.inventory.randomInt);
+        await expect(app.shoppingCart.cartItems).toHaveCount(products.length);
     });
 
     await test.step('Verify Name, Description, Price of added products', async () => {
