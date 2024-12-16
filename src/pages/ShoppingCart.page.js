@@ -17,6 +17,8 @@ export class ShoppingCartPage extends BaseSwagLabPage {
 
     inventoryPrices = this.page.getByTestId('inventory-item-price');
 
+    checkoutButton = this.page.getByTestId('checkout');
+
     // async below added to show the function returns a promise
     async getCartItemByName(name) {
         return this.page.locator(this.cartItemSelector, { hasText: name });
@@ -29,5 +31,9 @@ export class ShoppingCartPage extends BaseSwagLabPage {
 
     async removeCartItemById(id) {
         await this.cartItems.nth(id).locator(this.removeItemSelector).click();
+    }
+
+    async openCheckout() {
+        await this.checkoutButton.click();
     }
 }

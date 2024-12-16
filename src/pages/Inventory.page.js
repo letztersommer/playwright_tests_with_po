@@ -1,7 +1,7 @@
+import { test } from '@playwright/test';
 import { getRandomProducts } from '../utils/getRandomElements';
 import { BaseSwagLabPage } from './BaseSwagLab.page';
 import { randomIntFromInterval } from '../utils/randomIntFromInterval';
-import { test } from '@playwright/test';
 
 export class InventoryPage extends BaseSwagLabPage {
     url = '/inventory.html';
