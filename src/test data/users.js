@@ -4,5 +4,6 @@ export const users = {
         password: 'secret_sauce',
         firstName: 'First',
         lastName: 'Last',
+        zipCode: '10124',
     },
 };
